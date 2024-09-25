@@ -1,0 +1,12 @@
+name: add_calendar_events_env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pandas
+  - pip
+  - pip:
+    - google-api-python-client
+    - google-auth-httplib2
+    - google-auth-oauthlib
