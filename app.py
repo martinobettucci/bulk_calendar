@@ -8,7 +8,7 @@ from googleapiclient.discovery import build
 
 # Définir les SCOPES requis
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-
+CALENDAR = 'martino.bettucci@gmail.com'
 
 def authenticate_service_account(json_keyfile):
     """Authentifie le compte de service et retourne un service Google Calendar."""
@@ -87,8 +87,7 @@ def lister_evenements(service, calendar_id, max_results=10):
 
 def main():
     fichier_csv = 'rendezvous.csv'
-    json_keyfile = 'service-account.json'
-    calendar_id = 'martino.bettucci@gmail.com'  # Remplacez par l'ID de votre calendrier
+    json_keyfile = 'service_account.json'
 
     if not os.path.exists(fichier_csv):
         print(f"Le fichier {fichier_csv} n'existe pas.")
@@ -100,10 +99,10 @@ def main():
 
     service = authenticate_service_account(json_keyfile)
     evenements = lire_csv(fichier_csv)
-    ajouter_evenements(service, evenements, calendar_id=calendar_id)
+    ajouter_evenements(service, evenements, calendar_id=CALENDAR)
 
     # Liste les 10 prochains événements pour vérifier
-    lister_evenements(service, calendar_id=calendar_id, max_results=10)
+    lister_evenements(service, calendar_id=CALENDAR, max_results=10)
 
 
 if __name__ == '__main__':
